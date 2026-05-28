@@ -128,7 +128,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ORIGIN_REGEX_WHITELIST = [
     r'^http://localhost:\d{4}$',
-    r'^https://your-app\.vercel\.app$',
+    r'^https://gamefaceai.*\.vercel\.app$',
 ]
 
 OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')

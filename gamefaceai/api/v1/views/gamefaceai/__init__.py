@@ -9,7 +9,7 @@ class GameFaceAIAPIView(APIView):
     def post(self, request, *args, **kwargs):
         try:
             visual_style = request.data.get('visual_style')
-            if not visual_style or visual_style not in ["ghibili", "action_figure", "lego"]:
+            if not visual_style or visual_style not in ["ghibli", "action_figure", "lego"]:
                 return Response(data={"status": "failed", "error": "Invalid Visual Style"}, status=400)
 
             name = request.data.get('name')

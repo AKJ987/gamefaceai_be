@@ -11,9 +11,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
-from configparser import ConfigParser
+from configparser import RawConfigParser
 
-config = ConfigParser()
+config = RawConfigParser()
 config.read('../../gamefaceai.ini')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -42,9 +42,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -126,5 +128,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CORS_ORIGIN_REGEX_WHITELIST = [
+    r'^http://localhost:\d{4}$',
+    r'^https://your-app\.vercel\.app$',
+]
 
 OPENAI_API_KEY = config.get('settings', 'OPENAI_API_KEY')
